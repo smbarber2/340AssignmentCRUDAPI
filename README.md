@@ -3,7 +3,7 @@ Using POSTMAN, you can access the following endpoints:
 
 ## Get list of animals
 
-###Request
+### Request
 
     `GET /animals/all`
 
