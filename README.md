@@ -1,156 +1,139 @@
-# CRUD API
+# API Endpoints
+Using POSTMAN, you can access the following endpoints:
 
-The REST API performs CRUD operations on Student objects as described below.
+## Get list of animals
 
-## Installation
-- Get the project
-    - clone
-  
-        `git clone https://github.com/uncg-csc340/f24-crud-api-jpa.git`
-    - download zip.
-- Open the project in IntelliJ.
-- [`/src/main/resources/application.properties`](https://github.com/uncg-csc340/f24-crud-api-jpa/blob/8f6ea1be819075df59ed06bd5b8975eccb636712/src/main/resources/application.properties) file  is the configuration for the MySQL database on your localhost.
-  - the database name is on the `datasource.url` property between the last `/` and the `?`. In this case the database name is `f24-340`.
-  - You MUST have the database up and running before running the project! 
-    - Open your XAMPP Control Panel.
-    - Start the Apache server.
-    - Start MySQL.
-    - Click on MySQL "Admin" to open up the DBMS.
-    - Ensure the database that you need is available.
-- Build and run the main class. You should see 2 new tables created in the aforementioned database.
+###Request
 
-## API Endpoints
-Use POSTMAN to try the following endpoints:
+    `GET /animals/all`
 
-## Get list of Students
-
-### Request
-
-    `GET /students/all`
-
-    `http://localhost:8080/students/all`
+    `http://localhost:8080/animals/all`
 
    
 ### Response
 
      [
    
-     {"studentId": 1, "name": "sample1", "species": "csc", "gpa": 3.89}, 
+     {"animalId": 1, "name": "sample1", "species": "mammal", "habitat" : "house", "description" : "sample"}, 
    
-     {"studentId": 2, "name": "sample2", "species": "mat", "gpa": 4.0}, 
+     {"animalId": 2, "name": "sample2", "species": "amphibian", "habitat" : "house", "description" : "sample"}, 
    
-     { "studentId": 3, "name": "sample3", "species": "eng", "gpa": 3.25}
+     { "animalId": 3, "name": "sample3", "species": "mammal", "habitat" : "house", "description" : "sample"}
    
      ]
 
-## Get a specific Student
+## Get a specific animal
 
 ### Request
 
-`GET /students/{studentId}`
+`GET /animals/{animalId}`
 
-`http://localhost:8080/students/1`
+`http://localhost:8080/animals/1`
 
 ### Response
 
     {
-      "studentId": 1, "name": "sample1", "species": "csc", "gpa": 3.89
+      "animalId": 1,
+      "name": "sample1",
+      "species": "mammal",
+      "habitat" : "house",
+      "description" : "sample"
     }
 
      
-## Create a new Student
+## Create a new animal
 
 ### Request
 
-    `POST /students/new`
+    `POST /animals/new`
     
-    `http://localhost:8080/students/new` --data '{ "name": "sample4", "species": "csc", "gpa": 3.55}'
+    `http://localhost:8080/animals/new` --data '{ "name": "Bluejay", "species": "bird", "habitat" : "house", "description" : "sample"}'
 
    ### Response
 
    [
    
-     {"studentId": 1, "name": "sample1", "species": "csc", "gpa": 3.89}, 
+     {"animalId": 1, "name": "sample1", "species": "mammal", "habitat" : "house", "description" : "sample"}, 
    
-     {"studentId": 2, "name": "sample2", "species": "mat", "gpa": 4.0}, 
+     {"animalId": 2, "name": "sample2", "species": "amphibian", "habitat" : "house", "description" : "sample"}, 
    
-     { "studentId": 3, "name": "sample3", "species": "eng", "gpa": 3.25},
+     { "animalId": 3, "name": "sample3", "species": "mammal", "habitat" : "house", "description" : "sample"},
 
-     { "studentId": 4, "name": "sample4", "species": "csc", "gpa": 3.55}
+     { "animalId":4, "Bluejay": "sample4", "species": "bird", "habitat" : "house", "description" : "sample"}
    
   ]
 
-## Get Students by species
+## Get animals by species
 
 ### Request
 
-    `GET /students?species=csc`
+    `GET /animals?species=mammal`
 
-    `http://localhost:8080/students?species=csc`
+    `http://localhost:8080/animals?species=mammal`
 
    
 ### Response
 
      [
    
-      {"studentId": 1, "name": "sample1", "species": "csc", "gpa": 3.89}, 
-   
-      { "studentId": 4, "name": "sample4", "species": "csc", "gpa": 3.55}
+      {"animalId": 1, "name": "sample1", "species": "mammal", "habitat" : "house", "description" : "sample"}, 
+
+     { "animalId": 3, "name": "sample3", "species": "mammal", "habitat" : "house", "description" : "sample"},
    
      ]
-
-## Get Honors students
-
-### Request
-
-    `GET /students/honors?gpa=3.5`
-
-    `http://localhost:8080/students/honors?gpa=3.5`
-
-   
-### Response
-
-   [
-   
-     {"studentId": 1, "name": "sample1", "species": "csc", "gpa": 3.89}, 
-   
-     {"studentId": 2, "name": "sample2", "species": "mat", "gpa": 4.0},    
-
-     { "studentId": 4, "name": "sample4", "species": "csc", "gpa": 3.55}
      
-   ]
 
-## Update an existing Student
+## Update an existing animal
 
 ### Request
 
-    `PUT /students/update/{studentId}`
+    `PUT /animals/update/{animalId}`
     
-    `http://localhost:8080/students/update/1` --data '{ "name": "sampleUpdated", "species": "csc", "gpa": 3.92}'
+    `http://localhost:8080/animals/update/1` --data '{"animalId": 1, "name": "cat", "species": "mammal", "habitat" : "house", "description" : "updated sample"}'
 
    ### Response
    
     {
-      "studentId": 1, "name": "sampleUpdated", "species": "csc", "gpa": 3.92
+      "animalId": 1,
+      "name": "cat",
+      "species": "mammal",
+      "habitat" : "house",
+      "description" : "updated sample"
     }
 
 
-## Delete an existing Student
+## Delete an existing animal
 
 ### Request
 
-    `DELETE /students/delete/{studentId}`
+    `DELETE /animals/delete/{animalId}`
     
-    `http://localhost:8080/students/delete/1`
+    `http://localhost:8080/animals/delete/1`
 
    ### Response
    
    [
    
-     {"studentId": 2, "name": "sample2", "species": "mat", "gpa": 4.0}, 
+     {"animalId": 2, "name": "sample2", "species": "amphibian", "habitat" : "house", "description" : "sample"}, 
    
-     { "studentId": 3, "name": "sample3", "species": "eng", "gpa": 3.25},
+     { "animalId": 3, "name": "sample3", "species": "mammal", "habitat" : "house", "description" : "sample"},
 
-     { "studentId": 4, "name": "sample4", "species": "csc", "gpa": 3.55}
+     { "animalId": 4, "name": "Bluejay", "species": "bird", "habitat" : "house", "description" : "sample"}
+   
+  ]
+
+  ## Search for animals whose name contains [Query]
+
+  ### Request
+  
+      `GET /animals/search?contains=blue`
+      
+      `http://localhost:8080/animals/search?contains=blue`
+
+ ### Response
+   
+   [
+   
+     { "animalId": 4, "name": "Bluejay", "species": "bird", "habitat" : "house", "description" : "sample"}
    
   ]
