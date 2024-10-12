@@ -25,12 +25,6 @@ public class AnimalController {
         return service.getAnimalById(animalId);
     }
 
-    //EXTRA: Animal by Name [merged into the search tbh]
-    //@GetMapping("/{name}")
-    //publc Animal getAnimalByName(@PathVariable String name) {
-    //    return service.getAnimalByName(name);
-    //}
-
     //Animal by species [Works, http://localhost:8080/animals?species= [species] ]
     @GetMapping("")
     public List<Animal> getAnimalsBySpecies(@RequestParam(name = "species", defaultValue = "unspecified") String species) {
@@ -58,7 +52,7 @@ public class AnimalController {
         return service.getAllAnimals();
     }
 
-    //Animal by search [WORKS OMG]
+    //Animal by search through name [WORKS OMG]
     @GetMapping("/search") // /search?contains= input
     public List<Animal> getAnimalsBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name) {
         return service.getAnimalBySearch(name);
