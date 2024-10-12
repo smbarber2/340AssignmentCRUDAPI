@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Centralizes data access to the Student Database.
+ * Centralizes data access to the Database.
  */
 @Service
 public class AnimalService {
@@ -24,8 +24,6 @@ public class AnimalService {
         return animalRepository.findById(animalId).orElse(null);
     }
 
-    //EXTRA:Animal by Name
-    //public Animal getAnimalByName(String name) { return animalRepository.findByName(name).orElse(null); }
 
     //All animals of a species
     public List<Animal> getAnimalsBySpecies(String species) {
@@ -55,7 +53,7 @@ public class AnimalService {
         animalRepository.deleteById(animalId);
     }
 
-    //Search by String
+    //Search by String for name match
     public List<Animal> getAnimalBySearch(String name) {return animalRepository.findByNameContainingIgnoreCase(name); }
 
 
